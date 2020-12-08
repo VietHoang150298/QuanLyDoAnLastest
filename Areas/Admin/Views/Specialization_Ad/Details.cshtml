@@ -1,0 +1,59 @@
+﻿@model QuanLyDoAnLastest.Models.Specializations
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Specializations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Industries.IndustryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Industries.IndustryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecializationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecializationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDelete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpecializationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

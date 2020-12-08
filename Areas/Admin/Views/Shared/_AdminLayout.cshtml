@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar header">
+                <h3>HUMG Slider</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>The Provider</p>
+                <li class="active">
+                    <a href="#homeSubmenu" aria-expanded="false" class="dropdown-toggle">Home</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            @Html.ActionLink("Faculties", "Index", "Faculty_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Departments", "Index", "Department_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Industries", "Index", "Industry_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Specializations", "Index", "Specialization_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Classes", "Index", "Class_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Teachers", "Index", "Teacher_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Students", "Index", "Student_Ad", new { Area = "Admin" }, null)
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#sidebarCollapse").on('click', function () {
+                $("#sidebar").toggleClass('active');
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model PagedList.IPagedList<QuanLyDoAnLastest.Models.Faculties>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "PageList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>PageList</h2>
+
+<h2> Faculty List</h2>
+<table class="table">
+    <tr>
+        <th>
+            FacultyName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            PhoneNumber
+        </th>
+        <th>
+            IsDelete
+        </th>
+        <th>
+            IsActive
+        </th>
+        <th>
+            LastUpdate
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacultyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+        </tr>
+    }
+</table>
+    @*Thêm mã phân trang*@
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("PageList", "Faculty_Ad",
+        new { page }))

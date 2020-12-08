@@ -1,0 +1,73 @@
+﻿@model QuanLyDoAnLastest.Models.Teachers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Teachers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Specializations.SpecializationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specializations.SpecializationName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuideStudent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuideStudent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
