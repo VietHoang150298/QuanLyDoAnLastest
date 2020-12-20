@@ -8,20 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAnLastest.Models;
 
-namespace QuanLyDoAnLastest.Areas.Admin.Controllers
+namespace QuanLyDoAnLastest.Controllers
 {
-    public class Enrollment_AdController : Controller
+    public class Enrollment_HomeController : Controller
     {
         private QuanLyDoAnDbContext db = new QuanLyDoAnDbContext();
 
-        // GET: Admin/Enrollment_Ad
+        // GET: Enrollment_Home
+        [Authorize(Roles = "RoleAdmin")]
         public ActionResult Index()
         {
-            var enrollments = db.Enrollments.Include(e => e.Students).Include(e => e.Teachers);
+            var enrollments = db.Enrollments.Include(e => e.Students).Include(e => e.SubjectStudents).Include(e => e.Teachers);
             return View(enrollments.ToList());
         }
 
-        // GET: Admin/Enrollment_Ad/Details/5
+        // GET: Enrollment_Home/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,38 +37,40 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
             return View(enrollment);
         }
 
-        // GET: Admin/Enrollment_Ad/Create
+        // GET: Enrollment_Home/Create
+        [Authorize(Roles = "RoleStudent")]
         public ActionResult Create()
         {
             ViewBag.StudentCode = new SelectList(db.Students, "StudentCode", "StudentName");
-            ViewBag.TeacherCode = new SelectList(db.Teachers, "TeacherCode", "TeacherName");
+            ViewBag.SubStuCode = new SelectList(db.SubjectStudents, "SubStuCode", "SubStuName");
+            //ViewBag.TeacherCode = new SelectList(db.Teachers, "TeacherCode", "TeacherName");
+            ViewBag.Teachers = db.Teachers.ToList();
             return View();
         }
 
-        // POST: Admin/Enrollment_Ad/Create
+        // POST: Enrollment_Home/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EnrollmentId,LastUpdate,StudentCode,TeacherCode")] Enrollment enrollment)
+        public ActionResult Create([Bind(Include = "EnrollmentId,LastUpdate,StudentCode,TeacherCode,SubStuCode")] Enrollment enrollment)
         {
             enrollment.LastUpdate = DateTime.Now;
-            
-            foreach (var item in enrollment.TeacherCode )
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    db.Enrollments.Add(enrollment);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                enrollment.StudentCode = Session["StudentCode"].ToString();
+                db.Enrollments.Add(enrollment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
+
             ViewBag.StudentCode = new SelectList(db.Students, "StudentCode", "StudentName", enrollment.StudentCode);
+            ViewBag.SubStuCode = new SelectList(db.SubjectStudents, "SubStuCode", "SubStuName", enrollment.SubStuCode);
             ViewBag.TeacherCode = new SelectList(db.Teachers, "TeacherCode", "TeacherName", enrollment.TeacherCode);
             return View(enrollment);
         }
 
-        // GET: Admin/Enrollment_Ad/Edit/5
+        // GET: Enrollment_Home/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,16 +83,17 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.StudentCode = new SelectList(db.Students, "StudentCode", "StudentName", enrollment.StudentCode);
+            ViewBag.SubStuCode = new SelectList(db.SubjectStudents, "SubStuCode", "SubStuName", enrollment.SubStuCode);
             ViewBag.TeacherCode = new SelectList(db.Teachers, "TeacherCode", "TeacherName", enrollment.TeacherCode);
             return View(enrollment);
         }
 
-        // POST: Admin/Enrollment_Ad/Edit/5
+        // POST: Enrollment_Home/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentId,LastUpdate,StudentCode,TeacherCode")] Enrollment enrollment)
+        public ActionResult Edit([Bind(Include = "EnrollmentId,LastUpdate,StudentCode,TeacherCode,SubStuCode")] Enrollment enrollment)
         {
             enrollment.LastUpdate = DateTime.Now;
             if (ModelState.IsValid)
@@ -99,11 +103,12 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.StudentCode = new SelectList(db.Students, "StudentCode", "StudentName", enrollment.StudentCode);
+            ViewBag.SubStuCode = new SelectList(db.SubjectStudents, "SubStuCode", "SubStuName", enrollment.SubStuCode);
             ViewBag.TeacherCode = new SelectList(db.Teachers, "TeacherCode", "TeacherName", enrollment.TeacherCode);
             return View(enrollment);
         }
 
-        // GET: Admin/Enrollment_Ad/Delete/5
+        // GET: Enrollment_Home/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +123,7 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
             return View(enrollment);
         }
 
-        // POST: Admin/Enrollment_Ad/Delete/5
+        // POST: Enrollment_Home/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

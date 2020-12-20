@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QuanLyDoAnLastest.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Choose Teacher", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Students.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectStudents.SubStuName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teachers.TeacherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Students.StudentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectStudents.SubStuName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teachers.TeacherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentId })
+        </td>
+    </tr>
+}
+
+</table>

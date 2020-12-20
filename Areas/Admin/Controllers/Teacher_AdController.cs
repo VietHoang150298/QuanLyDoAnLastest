@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using QuanLyDoAnLastest.Models;
 
 namespace QuanLyDoAnLastest.Areas.Admin.Controllers
@@ -19,10 +20,14 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
         private QuanLyDoAnDbContext db = new QuanLyDoAnDbContext();
 
         // GET: Admin/Teacher_Ad
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var teachers = db.Teachers.Include(t => t.Specializations);
-            return View(teachers.ToList());
+            var pagesize = 3;
+            var model = db.Teachers.ToList();
+            int pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, pagesize));
+            //var teachers = db.Teachers.Include(t => t.Specializations);
+            //return View(teachers.ToList());
         }
         //private void UploadExcelFile(HttpPostedFileBase file)
         //{
@@ -122,7 +127,6 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
             }
             return View(teachers);
         }
-
         // GET: Admin/Teacher_Ad/Create
         public ActionResult Create()
         {

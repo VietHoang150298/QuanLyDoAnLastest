@@ -1,0 +1,60 @@
+﻿@model QuanLyDoAnLastest.Models.Enrollment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Teacher Registration</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Enrollment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.TeacherCode, "TeacherCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("TeacherCode", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TeacherCode, "", new { @class = "text-danger" })
+                </div>*@
+            <table class="table table-bordered">
+                <tr>
+                    <th>Teacher Code</th>
+                    <th>Teacher Name</th>
+                    <th>Position</th>
+                    <th>Phone Number</th>
+                    <th>Guide Student</th>
+                    <th>Choose Teacher</th>
+                </tr>
+                @foreach (var item in ViewBag.Teachers)
+                {
+                    <tr>
+                        <td>@item.TeacherCode</td>
+                        <td>@item.TeacherName</td>
+                        <td>@item.Position</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.GuideStudent</td>
+                        <td><input type="checkbox" name="TeacherCode[]" value="@item.TeacherCode" /></td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input onclick="addTeacher()" type="submit" value="Choose" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function addTeacher() {
+        alert("Register Succesfully");
+    }
+</script>
+

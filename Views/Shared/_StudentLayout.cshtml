@@ -8,8 +8,6 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
-    
 </head>
 <body>
     <div class="wrapper">
@@ -20,16 +18,26 @@
             <ul class="list-unstyled components">
                 <p>The Provider</p>
                 <li class="active">
-                    @Html.ActionLink("Home", "Index", "Home")
+                    <a href="#homeSubmenu" aria-expanded="false" class="dropdown-toggle">Home</a>
                 </li>
                 <li>
-                    @Html.ActionLink("About", "About", "Home")
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            @Html.ActionLink("Register Teacher", "Index", "Enrollment_Home")
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    @Html.ActionLink("Contact", "Contact", "Home")
-                </li>
-                <li>
-                    @Html.ActionLink("Logout", "Logout", "Authorize")
+                    @if (Session["idUser"] != null)
+                    {
+                        <p>Hello: @Session["idUser"]</p>
+                        <p>@Html.ActionLink("Logout", "Logout", "Authorize")</p>
+                    }
+                    else
+                    {
+                        <p>@Html.ActionLink("Login", "Login", "Authorize")</p>
+                    }
                 </li>
             </ul>
         </nav>

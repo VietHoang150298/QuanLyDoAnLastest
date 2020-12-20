@@ -44,8 +44,25 @@
                         <li>
                             @Html.ActionLink("Students", "Index", "Student_Ad", new { Area = "Admin" }, null)
                         </li>
-
+                        <li>
+                            @Html.ActionLink("Accounts", "Index", "Account_Ad", new { Area = "Admin" }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Enrollments", "Index", "Enrollment_Ad", new { Area = "Admin" }, null)
+                        </li>
                     </ul>
+                </li>
+                <li>
+                    @if (Session["idUser"] != null)
+                    {
+                        <p>Hello: @Session["idUser"]</p>
+                        <a href="/Authorize/Logout">Logout</a>
+
+                    }
+                    else
+                    {
+                        <p>@Html.ActionLink("Login", "Login", "Authorize")</p>
+                    }
                 </li>
             </ul>
         </nav>
@@ -62,7 +79,7 @@
                 @RenderBody()
                 <hr />
                 <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    <p>&copy; @DateTime.Now.Year - Hanoi University of Mining and Geology</p>
                 </footer>
             </div>
         </div>

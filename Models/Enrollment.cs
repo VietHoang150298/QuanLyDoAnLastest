@@ -20,5 +20,8 @@ namespace QuanLyDoAnLastest.Models
         public string TeacherCode { get; set; }
         [ForeignKey("TeacherCode")]
         public virtual Teachers Teachers { get; set; }
+        public string SubStuCode { get; set; }
+        [ForeignKey("SubStuCode")]
+        public virtual SubjectStudents SubjectStudents { get; set; }
     }
 }

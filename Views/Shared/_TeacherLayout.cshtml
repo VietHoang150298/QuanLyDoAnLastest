@@ -21,7 +21,23 @@
                     <a href="#homeSubmenu" aria-expanded="false" class="dropdown-toggle">Home</a>
                 </li>
                 <li>
-                    @Html.ActionLink("Enrollment", "Index", "Enrollment", new { Area = "Teacher"}, null)
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            @Html.ActionLink("Faculties", "Index", "Faculty_Ad", new { Area = "Admin" }, null)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    @if (Session["idUser"] != null)
+                    {
+                        <p>Hello: @Session["idUser"]</p>
+                        <p>@Html.ActionLink("Logout", "Logout", "Authorize")</p>
+                    }
+                    else
+                    {
+                        <p>@Html.ActionLink("Login", "Login", "Authorize")</p>
+                    }
                 </li>
             </ul>
         </nav>
@@ -38,7 +54,7 @@
                 @RenderBody()
                 <hr />
                 <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    <p>&copy; @DateTime.Now.Year - Hanoi University of Mining and Geology</p>
                 </footer>
             </div>
         </div>

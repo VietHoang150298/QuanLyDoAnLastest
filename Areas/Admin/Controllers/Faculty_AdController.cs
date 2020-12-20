@@ -16,6 +16,7 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
         private QuanLyDoAnDbContext db = new QuanLyDoAnDbContext();
 
         // GET: Admin/Facultie_Ad
+        [Authorize(Roles = "RoleAdmin")]
         public ActionResult Index()
         {
             return View(db.Faculties.ToList());

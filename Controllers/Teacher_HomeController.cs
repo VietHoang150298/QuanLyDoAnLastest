@@ -11,12 +11,15 @@ namespace QuanLyDoAnLastest.Controllers
     {
         QuanLyDoAnDbContext db = new QuanLyDoAnDbContext();
         // GET: Teacher_Home
-        public ActionResult Index()
+        [Authorize(Roles = "RoleTeacher")]
+        public ActionResult ManageStudent()
         {
-            var teacher_list = from teacher in db.Teachers
-                               
-                               select teacher;
-            return View(teacher_list);
+            var guideStu = from enrol in db.Enrollments
+                           where enrol.TeacherCode == "111"
+                           //join teach in db.Teachers
+                           //on enrol.TeacherCode equals teach.TeacherCode
+                           select enrol;
+            return View(guideStu);
         }
     }
 }

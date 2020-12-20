@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\Account_AdController.cs" />
     <Compile Include="Areas\Admin\Controllers\Class_AdController.cs" />
     <Compile Include="Areas\Admin\Controllers\Department_AdController.cs" />
     <Compile Include="Areas\Admin\Controllers\Enrollment_AdController.cs" />
@@ -161,8 +162,7 @@
     <Compile Include="Areas\Admin\Controllers\Specialization_AdController.cs" />
     <Compile Include="Areas\Admin\Controllers\Student_AdController.cs" />
     <Compile Include="Areas\Admin\Controllers\Teacher_AdController.cs" />
-    <Compile Include="Areas\Student\Controllers\Enrollment_StuController.cs" />
-    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Controllers\Enrollment_HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Controllers\Teacher_HomeController.cs" />
@@ -237,6 +237,14 @@
     <Compile Include="Migrations\202012081449254_update_tbl7.designer.cs">
       <DependentUpon>202012081449254_update_tbl7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012151435586_update_tbl8.cs" />
+    <Compile Include="Migrations\202012151435586_update_tbl8.designer.cs">
+      <DependentUpon>202012151435586_update_tbl8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012170848212_update_tbl9.cs" />
+    <Compile Include="Migrations\202012170848212_update_tbl9.designer.cs">
+      <DependentUpon>202012170848212_update_tbl9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\Classes.cs" />
@@ -251,8 +259,8 @@
     <Compile Include="Models\Specializations.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Models\Subjects.cs" />
+    <Compile Include="Models\SubjectStudents.cs" />
     <Compile Include="Models\Teachers.cs" />
-    <Compile Include="Models\ViewModel\EnrollmentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -334,15 +342,17 @@
     <Content Include="Areas\Admin\Views\Class_Ad\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Class_Ad\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Class_Ad\Index.cshtml" />
-    <Content Include="Areas\Student\Views\web.config" />
-    <Content Include="Areas\Student\Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Faculty_Ad\PageList.cshtml" />
     <Content Include="Areas\Admin\Views\Enrollment_Ad\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Enrollment_Ad\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Enrollment_Ad\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Enrollment_Ad\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Enrollment_Ad\Index.cshtml" />
-    <Content Include="Areas\Student\Views\Enrollment_Stu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account_Ad\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account_Ad\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Account_Ad\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Account_Ad\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Account_Ad\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -450,12 +460,18 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Authorize\Login.cshtml" />
-    <Content Include="Views\Teacher_Home\Index.cshtml" />
+    <Content Include="Views\Shared\_StudentLayout.cshtml" />
+    <Content Include="Views\Shared\_TeacherLayout.cshtml" />
+    <Content Include="Views\Enrollment_Home\Create.cshtml" />
+    <Content Include="Views\Enrollment_Home\Delete.cshtml" />
+    <Content Include="Views\Enrollment_Home\Details.cshtml" />
+    <Content Include="Views\Enrollment_Home\Edit.cshtml" />
+    <Content Include="Views\Enrollment_Home\Index.cshtml" />
+    <Content Include="Views\Teacher_Home\ManageStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Student\Data\" />
     <Folder Include="Uploads\Excels\" />
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +536,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012081449254_update_tbl7.resx">
       <DependentUpon>202012081449254_update_tbl7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012151435586_update_tbl8.resx">
+      <DependentUpon>202012151435586_update_tbl8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012170848212_update_tbl9.resx">
+      <DependentUpon>202012170848212_update_tbl9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

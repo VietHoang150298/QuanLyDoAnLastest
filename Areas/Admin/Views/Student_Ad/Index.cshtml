@@ -1,5 +1,5 @@
-﻿@model IEnumerable<QuanLyDoAnLastest.Models.Students>
-
+﻿@model PagedList.IPagedList<QuanLyDoAnLastest.Models.Students>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,22 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Classes.ClassName)
+            Class Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StudentCode)
+            Student Code
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StudentName)
+            Student Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Note)
+            Note
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastUpdate)
+            Last Update
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            Phone Number
         </th>
         <th></th>
     </tr>
@@ -63,3 +63,7 @@
     }
 
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", "Student_Ad",
+    new { page , Style = "color: white"}))

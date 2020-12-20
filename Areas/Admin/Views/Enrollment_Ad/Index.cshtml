@@ -19,13 +19,7 @@
             @Html.DisplayNameFor(model => model.Teachers.TeacherName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Teachers.TeacherCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Teachers.Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Teachers.PhoneNumber)
+            @Html.DisplayNameFor(model => model.SubjectStudents.SubStuName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Teachers.GuideStudent)
@@ -42,16 +36,10 @@
         @Html.DisplayFor(modelItem => item.Teachers.TeacherName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Teachers.TeacherCode)
+        @Html.DisplayFor(modelItem => item.SubjectStudents.SubStuName)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Teachers.Position)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Teachers.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Teachers.GuideStudent)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }) |

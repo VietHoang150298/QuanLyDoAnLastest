@@ -1,0 +1,51 @@
+﻿@model QuanLyDoAnLastest.Models.Enrollment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Students.StudentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Students.StudentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubjectStudents.SubStuName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubjectStudents.SubStuName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teachers.TeacherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teachers.TeacherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EnrollmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

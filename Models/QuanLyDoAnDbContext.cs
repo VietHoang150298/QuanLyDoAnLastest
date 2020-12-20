@@ -23,6 +23,7 @@ namespace QuanLyDoAnLastest.Models
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Subjects> Subjects { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
+        public virtual DbSet<SubjectStudents> SubjectStudents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

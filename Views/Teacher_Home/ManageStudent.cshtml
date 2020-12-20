@@ -1,0 +1,23 @@
+﻿@model IEnumerable<QuanLyDoAnLastest.Models.Enrollment>
+@{
+    ViewBag.Title = "ManageStudent";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<h2>ManageStudent</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>Student Code</td>
+        <th>Student Name</th>
+        <th>Subject Student Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Students.StudentCode </td>
+            <td>@item.Students.StudentName </td>
+            <td>@item.Teachers.TeacherName</td>
+        </tr>
+    }
+</table>
+

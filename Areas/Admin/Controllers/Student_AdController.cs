@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using QuanLyDoAnLastest.Models;
 
 namespace QuanLyDoAnLastest.Areas.Admin.Controllers
@@ -15,10 +16,14 @@ namespace QuanLyDoAnLastest.Areas.Admin.Controllers
         private QuanLyDoAnDbContext db = new QuanLyDoAnDbContext();
 
         // GET: Admin/Student_Ad
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var students = db.Students.Include(s => s.Classes);
-            return View(students.ToList());
+            var pagesize = 3;
+            var model = db.Students.ToList();
+            int pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, pagesize));
+            //var students = db.Students.Include(s => s.Classes);
+            //return View(students.ToList());
         }
 
         // GET: Admin/Student_Ad/Details/5
